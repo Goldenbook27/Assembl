@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import Navbar from './components/LandingPage/Navbar'
+import Herosection from './components/LandingPage/Herosection'
+import AboutUs from './components/LandingPage/AboutUs'
+import Footer from './components/LandingPage/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <p class="text-3xl font-bold underline">
-    Hello world!
-      </p>
+      <Navbar/>
+      <Herosection/>
+      <AboutUs/>
+      <Footer/>
     </>
   )
 }
