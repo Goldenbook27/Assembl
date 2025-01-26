@@ -9,7 +9,6 @@ const postSchema = new mongoose.Schema(
         },
         userName: {
             type: String,
-            required: true
         },
             text:{
                 type:String,
@@ -28,11 +27,9 @@ const postSchema = new mongoose.Schema(
                 userId:{
                     type: mongoose.Schema.Types.ObjectId,
                     ref: "User",
-                    required: true
                 },
                 text:{
                     type: String,
-                    required: true
                 },
                 userProfilePic: {
                     type: String

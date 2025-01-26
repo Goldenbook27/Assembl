@@ -23,14 +23,18 @@ const PostSection = () => {
     };
     fetchPosts();
   }, []);
-  const handlePostButton = () => {
-    console.log(text);
+  const handlePostButton = async() => {
     const data = {
-      username: auth.user,
-      userId: auth.userId,
+      userName: auth.user,
+      postedBy: auth.userId,
       text,
     };
-    axios.post("http://localhost:3000/v1/api/post/create", data);
+    console.log(data);
+
+    await axios.post("http://localhost:3000/v1/api/post/create", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },});
   };
   return (
     <div className="h-[1171px] w-[760px] flex flex-col gap-5 bg-[#EEEEEE]">

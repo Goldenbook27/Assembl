@@ -61,6 +61,51 @@ export const deleteGroup = async(req,res)=>{
     }
 }
 
+export const leaveGroup = async (req, res) => {
+    try {
+        const { id } = req.params; // Group ID
+        const { userId } = req.body; // User ID or email sent in the request body
+
+        if (!id || !userId) {
+            return res.status(400).json({ message: "Group ID and User ID are required." });
+        }
+
+        // Find the group by ID
+        const group = await Group.findById(id);
+
+        if (!group) {
+            return res.status(404).json({ message: "Group not found." });
+        }
+
+        // Check if the user is the group creator
+        if (group.createdBy.toString() === userId) {
+            return res.status(403).json({ message: "Group creator cannot leave the group." });
+        }
+
+        // Check if the user is a member of the group
+        const isMember = group.members.includes(userId);
+
+        if (!isMember) {
+            return res.status(400).json({ message: "User is not a member of this group." });
+        }
+
+        // Remove the user from the members array
+        group.members = group.members.filter((member) => member.toString() !== userId);
+
+        // Save the updated group
+        await group.save();
+
+        res.status(200).json({
+            message: "User successfully removed from the group.",
+            group,
+        });
+    } catch (error) {
+        console.log("Error in leaveGroup:", error.message);
+        res.status(500).json({ message: "Internal Server Error." });
+    }
+};
+
+
 export const getGroupById = async(req,res)=>{
     try {
         const group = await Group.findById(req.params.id)
