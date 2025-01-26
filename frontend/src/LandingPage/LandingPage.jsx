@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Herosection from './Herosection'
 import AboutUs from './AboutUs'
 import Footer from '../components/Footer'
+import Bottom_LP from './Bottom_LP'
 
 const LandingPage = () => {
   return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
       <Navbar/>
       <Herosection/>
       <AboutUs/>
+      <Bottom_LP/>
       <Footer/>
     </div>
   )

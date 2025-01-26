@@ -4,7 +4,7 @@ import Image2 from '../assets/Frame12.png'
 const AboutUs = () => {
   return (
     <div>
-      <div className="w-[1440] h-[540] flex flex-row justify-center items-center">
+      <div className="w-[1440] h-[540] flex flex-row justify-center bg-white items-center">
             <div className='w-[540] h-[540]'>
               <img src={Image2} alt="teamimg" />
             </div>
