@@ -10,11 +10,7 @@ import AuthPage from "./AuthPages/AuthPage";
 function App() {
   return (
     <>
-      {/* <LandingPage/> */}
-      {/* <Homepage /> */}
-      {/* <GroupChat /> */}
-      {/* <IndividualChat /> */}
-      <AuthPage />
+      <Homepage/>
     </>
   );
 }
