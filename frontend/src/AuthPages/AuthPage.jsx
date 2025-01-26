@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./AuthPage.css";
+import axios from "axios";
 const SocialLogin = () => {
   return (
     <div className="social-login">
@@ -15,7 +16,7 @@ const SocialLogin = () => {
   );
 };
 
-const InputField = ({ type, placeholder, icon }) => {
+const InputField = ({ type, placeholder, icon ,onChange}) => {
   // State to toggle password visibility
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   return (
@@ -25,6 +26,7 @@ const InputField = ({ type, placeholder, icon }) => {
         placeholder={placeholder}
         className="input-field"
         required
+        onChange={onChange}
       />
       {/* <i className="material-symbols-rounded">{icon}</i> */}
       {type === "password" && (
@@ -40,15 +42,44 @@ const InputField = ({ type, placeholder, icon }) => {
 };
 
 const SignUpSection = ({ isLogin, setIsLogin }) => {
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [userName, setUsername] = useState('')
+  const [fullName, setfullName] = useState('')
+  const handleSignUpButton = async(e)=>{
+    e.preventDefault();
+
+    const data = {
+      email,
+      password,
+      userName,
+      fullName
+    };
+    console.log(data)
+    try {
+      const response = await fetch('http://localhost:3000/v1/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }, withCredentials: true,
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log('Response from backend:', result);
+    } catch (error) {
+      console.error('Error during POST request:', error);
+    }
+}
   return (
     <div className="login-container">
       <h2 className="form-title">Sign Up</h2>
       <form action="#" className="login-form">
-        <InputField type="email" placeholder="Email address" icon="mail" />
-        <InputField type="text" placeholder="Username" icon="mail" />
-        <InputField type="name" placeholder="Full Name" icon="mail" />
-        <InputField type="password" placeholder="Password" icon="lock" />
-        <button type="submit" className="login-button">
+        <InputField type="email" placeholder="Email address" icon="mail" onChange={(e) => setEmail(e.target.value)} />
+        <InputField type="text" placeholder="Username" icon="mail" onChange={(e) => setUsername(e.target.value)}/>
+        <InputField type="name" placeholder="Full Name" icon="mail" onChange={(e) => setfullName(e.target.value)}/>
+        <InputField type="password" placeholder="Password" icon="lock" onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit" className="login-button" onClick={handleSignUpButton}>
           Sign Up
         </button>
       </form>
@@ -61,13 +92,38 @@ const SignUpSection = ({ isLogin, setIsLogin }) => {
 };
 
 const LoginSection = ({ isLogin, setIsLogin }) => {
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+    const handleLogInButton = async(e)=>{
+        e.preventDefault();
+
+        const data = {
+          email,
+          password,
+        };
+    
+        try {
+          const response = await fetch('http://localhost:3000/v1/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            }, withCredentials: true,
+            body: JSON.stringify(data),
+          });
+    
+          const result = await response.json();
+          console.log('Response from backend:', result);
+        } catch (error) {
+          console.error('Error during POST request:', error);
+        }
+    }
   return (
     <div className="login-container">
       <h2 className="form-title">Log In</h2>
       <form action="#" className="login-form">
-        <InputField type="email" placeholder="Email address" icon="mail" />
-        <InputField type="password" placeholder="Password" icon="lock" />
-        <button type="submit" className="login-button">
+        <InputField type="email" placeholder="Email address" icon="mail" onChange={(e) => setEmail(e.target.value)}/>
+        <InputField type="password" placeholder="Password" icon="lock"  onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit" className="login-button" onClick={handleLogInButton} >
           Log In
         </button>
       </form>

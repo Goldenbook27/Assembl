@@ -5,14 +5,14 @@ import LandingPage from "./LandingPage/LandingPage";
 import Homepage from "./Homepage/Homepage";
 import GroupChat from "./GroupChat/GroupChat";
 import IndividualChat from "./IndividualChat/IndividualChat";
-
+import AuthPage from './AuthPages/AuthPage'
 
 function App() {
   return (
     <>
 
       {/* <Homepage/> */}
-
+      <AuthPage/>
     </>
   );
 }

@@ -6,11 +6,12 @@ import authRoutes from '../backend/routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
 import groupRoutes from './routes/group.routes.js'
 import postRoutes from './routes/post.route.js'
+import cors from "cors"
 const app = express()
 dotenv.config()
 
 const PORT = process.env.PORT
-
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use('/v1/api/auth',authRoutes)
