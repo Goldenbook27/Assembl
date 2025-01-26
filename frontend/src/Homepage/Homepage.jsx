@@ -1,13 +1,13 @@
-import React from 'react'
-import PostSection from '../components/PostSection'
+import React from "react";
+import PostSection from "../components/PostSection";
 
 const Homepage = () => {
   return (
     <div>
       homepage
-      <PostSection/>
+      <PostSection />
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;
