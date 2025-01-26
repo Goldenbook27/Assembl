@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/v1/api/auth',authRoutes)
 app.use('/v1/api/user',userRoutes)
-app.use('/v1/api/group',userRoutes)
+app.use('/v1/api/group',groupRoutes)
 
 
 app.listen(PORT,()=>{
