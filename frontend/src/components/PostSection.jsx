@@ -7,7 +7,8 @@ import axios from 'axios'
 import { useState,useEffect } from "react";
 const PostSection = () => {
   const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState("");
+  const [text, settext] = useState("");
+  
   useEffect(() => {
     
     const fetchPosts = async () => {
@@ -22,7 +23,13 @@ const PostSection = () => {
     };
     fetchPosts();
   }, []);
-
+  const handlePostButton = ()=>{
+    console.log(text)
+    const data = {
+      text
+    }
+    axios.post('http://localhost:3000/v1/api/post/create',)
+  }
   return (
     <div className="h-[1171px] w-[760px] flex flex-col gap-5 bg-[#EEEEEE]">
       <div className="h-[186px] flex flex-col p-5 gap-5 bg-[#FFFFFF] rounded-[5px]">
@@ -30,6 +37,7 @@ const PostSection = () => {
           className="w-[720px] h-[101px] bg-[#EEEEEE] rounded-[100px]"
           type="text"
           placeholder="   Share Something..."
+          onChange={(e)=>{settext(e.target.value)}}
         />
         <div className="flex flex-row gap-5">
           <img src={Image01} alt="img_icon" />
@@ -38,7 +46,7 @@ const PostSection = () => {
           <div>Video</div>
         </div>
         <div className="pt-[10px] pr-[20px] pb-[10px] pl-[649px]">
-          <button className="bg-[#323232] h-[41px] w-[71px] rounded-[100px]  text-white">
+          <button className="bg-[#323232] h-[41px] w-[71px] rounded-[100px]  text-white" onClick={handlePostButton}>
             Post
           </button>
         </div>

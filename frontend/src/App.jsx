@@ -11,8 +11,8 @@ function App() {
   return (
     <>
 
-      {/* <Homepage/> */}
-      <AuthPage/>
+      <Homepage/>
+      {/* <AuthPage/> */}
     </>
   );
 }
