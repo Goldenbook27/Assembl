@@ -10,7 +10,8 @@ import AuthPage from "./AuthPages/AuthPage";
 function App() {
   return (
     <>
-      <Homepage/>
+      {/* <Homepage /> */}
+      <AuthPage />
     </>
   );
 }
