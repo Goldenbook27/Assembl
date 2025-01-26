@@ -1,11 +1,12 @@
 import React from 'react'
 import PostSection from '../components/PostSection'
+import HGCSection from '../components/HGCSection'
 
 const Homepage = () => {
   return (
-    <div>
-      homepage
+    <div className='bg-[#EEEEEE] flex p-5 gap-5 flex-row'>
       <PostSection/>
+      <HGCSection/>
     </div>
   )
 }
