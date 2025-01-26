@@ -5,6 +5,7 @@ import { connectDB } from "./LIB/db.js"
 import authRoutes from '../backend/routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
 import groupRoutes from './routes/group.routes.js'
+import postRoutes from './routes/post.route.js'
 const app = express()
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(cookieParser())
 app.use('/v1/api/auth',authRoutes)
 app.use('/v1/api/user',userRoutes)
 app.use('/v1/api/group',groupRoutes)
+app.use('/v1/api/post',postRoutes)
 
 
 app.listen(PORT,()=>{
