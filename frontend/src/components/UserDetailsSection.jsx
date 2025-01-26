@@ -1,8 +1,11 @@
 import YourProfile from "../assets/ProfileIcon.svg";
 import GroupIcon from "../assets/GroupIcon.svg";
 import IndividualIcon from "../assets/IndividualIcon.svg";
+import { useSelector } from "react-redux";
 
 export const UserDetailsSection = () => {
+  const auth = useSelector((state) => state.auth);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <div
@@ -28,7 +31,7 @@ export const UserDetailsSection = () => {
           }}
         >
           <img src={YourProfile} alt="" />
-          <div>Username</div>
+          <div>{auth.fullName}</div>
         </div>
       </div>
       <div
