@@ -10,7 +10,9 @@ import IndividualChat from "./IndividualChat/IndividualChat";
 function App() {
   return (
     <>
+
       {/* <Homepage/> */}
+
     </>
   );
 }
