@@ -1,6 +1,6 @@
 import express from 'express'
-import { protectRoute } from '../middlewares/auth.middleware'
-import { createGroup, deleteGroup, getGroupById, getGroupByName, getGroupByTheme, updateGroup } from '../controllers/group.controller'
+import { protectRoute } from '../middlewares/auth.middleware.js'
+import { createGroup, deleteGroup, getGroupById, getGroupByName, getGroupByTheme, updateGroup } from '../controllers/group.controller.js'
 const router = express.Router()
 
 router.post('/create',protectRoute,createGroup)
