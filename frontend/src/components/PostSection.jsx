@@ -3,19 +3,19 @@ import Image01 from "../assets/material-symbols_image.png";
 import Image02 from "../assets/mingcute_video-fill.png";
 import Image03 from "../assets/raphael_arrowdown.png";
 import Image04 from "../assets/1.png";
-import axios from 'axios'
-import { useState,useEffect } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 const PostSection = () => {
   const [posts, setPosts] = useState([]);
   const [text, settext] = useState("");
-  
+  const auth = useSelector((state) => state.auth);
+
   useEffect(() => {
-    
     const fetchPosts = async () => {
       try {
-        
         const response = await fetch("http://localhost:3000/v1/api/post/feed");
-        const data =await response.json()
+        const data = await response.json();
         setPosts(data);
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -23,13 +23,15 @@ const PostSection = () => {
     };
     fetchPosts();
   }, []);
-  const handlePostButton = ()=>{
-    console.log(text)
+  const handlePostButton = () => {
+    console.log(text);
     const data = {
-      text
-    }
-    axios.post('http://localhost:3000/v1/api/post/create',)
-  }
+      username: auth.user,
+      userId: auth.userId,
+      text,
+    };
+    axios.post("http://localhost:3000/v1/api/post/create", data);
+  };
   return (
     <div className="h-[1171px] w-[760px] flex flex-col gap-5 bg-[#EEEEEE]">
       <div className="h-[186px] flex flex-col p-5 gap-5 bg-[#FFFFFF] rounded-[5px]">
@@ -37,7 +39,9 @@ const PostSection = () => {
           className="w-[720px] h-[101px] bg-[#EEEEEE] rounded-[100px]"
           type="text"
           placeholder="   Share Something..."
-          onChange={(e)=>{settext(e.target.value)}}
+          onChange={(e) => {
+            settext(e.target.value);
+          }}
         />
         <div className="flex flex-row gap-5">
           <img src={Image01} alt="img_icon" />
@@ -46,7 +50,10 @@ const PostSection = () => {
           <div>Video</div>
         </div>
         <div className="pt-[10px] pr-[20px] pb-[10px] pl-[649px]">
-          <button className="bg-[#323232] h-[41px] w-[71px] rounded-[100px]  text-white" onClick={handlePostButton}>
+          <button
+            className="bg-[#323232] h-[41px] w-[71px] rounded-[100px]  text-white"
+            onClick={handlePostButton}
+          >
             Post
           </button>
         </div>
@@ -68,7 +75,11 @@ const PostSection = () => {
         >
           <div className="h-[56px] w-[720px] flex justify-between">
             <div className="w-[223px] flex flex-row gap-2.5">
-              <img className="h-[36px] w-[36px]" src={Image04} alt="User_icon" />
+              <img
+                className="h-[36px] w-[36px]"
+                src={Image04}
+                alt="User_icon"
+              />
               <div className="flex flex-col gap-1.25">
                 <div className="text-xl font-poppins font-semibold">
                   {post.username}
@@ -82,7 +93,6 @@ const PostSection = () => {
           <div className="text-[14px]">{post.text}</div>
         </div>
       ))}
-      
     </div>
   );
 };
