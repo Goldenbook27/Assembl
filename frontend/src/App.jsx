@@ -1,18 +1,14 @@
 import { useState } from 'react'
 
 import './App.css'
-import Navbar from './components/LandingPage/Navbar'
-import Herosection from './components/LandingPage/Herosection'
-import AboutUs from './components/LandingPage/AboutUs'
-import Footer from './components/LandingPage/Footer'
+import LandingPage from './LandingPage/LandingPage'
+import Homepage from './Homepage/Homepage'
 
 function App() {
   return (
     <>
-      <Navbar/>
-      <Herosection/>
-      <AboutUs/>
-      <Footer/>
+      {/* <LandingPage/> */}
+      <Homepage/>
     </>
   )
 }

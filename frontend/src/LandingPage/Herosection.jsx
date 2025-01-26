@@ -1,5 +1,5 @@
 import React from 'react'
-import Image1 from '../../assets/Frame11.png'
+import Image1 from '../assets/Frame11.png'
 const Herosection = () => {
   return (
     <div className="w-[1440] h-[540] flex flex-row bg-[#f0ecec] justify-center items-center">
